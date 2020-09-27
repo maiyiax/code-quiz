@@ -1,4 +1,4 @@
-// list of questions
+// array of questions
 var questions = [
     {
         question : "What does CSS stand for?",
@@ -41,3 +41,6 @@ var questions = [
 
     },
 ]
+
+// list variables
+var timer = 
