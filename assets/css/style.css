@@ -1,0 +1,36 @@
+nav {
+    display: inline-block;
+    color: blue;
+    font-size: 10px;
+    margin: 2px 8px;
+    width: 100%;
+}
+
+.highscore a {
+    float: left;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.timer {
+    float: right;
+    margin: 10px;
+}
+
+main {
+    text-align: center;
+    word-wrap: break-word;
+    width: 60%;
+    margin: auto;
+}
+
+main h2 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+    border-radius: 4px;
+}
