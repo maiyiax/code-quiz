@@ -1,43 +1,33 @@
 // array of questions
 var questions = [
     {
-        q : "What does CSS stand for?",
-        choiceA : "Computer Style Sheets",
-        choiceB : "Cascading Style Sheets",
-        choiceC : "Compiled Style sheets",
-        a : "B"
+        q: "What does CSS stand for?",
+        choices: ["Computer Style Sheets", "Cascading Style Sheets", "Compiled Style sheets"],
+        a: "Cascading Style Sheet"
 
     },
     {
-        q : "An array is enclosed within?",
-        choiceA : "Curly Braces",
-        choiceB : "Square Brackets",
-        choiceC : "Parantheses",
-        a: "B"
+        q: "An array is enclosed within?",
+        choices: ["Curly Braces","Square Brackets","Parantheses"],
+        a: "Square Brackets"
 
     },
     {
-        q : "Which data type returns a value of true or false.",
-        choiceA : "Boolean",
-        choiceB : "String",
-        choiceC : "Int",
-        a : "A"
+        q: "Which data type returns a value of true or false.",
+        choices: ["Boolean","String", "Int"],
+        a: "Boolean"
 
     },
     {
-        q : "Which of the following is not an HTML semantic element? ",
-        choiceA : "<article>",
-        choiceB : "<form>",
-        choiceC : "<span>",
-        a : "C"
+        q: "Which of the following is not an HTML semantic element? ",
+        choices: ["<article>","<form>","<span>",]
+        a: "span"
 
     },
     {
-        q : "Which html element is used to create an unordered list?",
-        choiceA : "ul",
-        choiceB : "ol",
-        choiceC : "li",
-        a : "A"
+        q: "Which html element is used to create an unordered list?",
+        choices: ["ul","ol","li"],
+        a: "ul"
 
     },
 ]
@@ -50,18 +40,18 @@ var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var finalQuestion = questions.length - 1;
 var currentQuestion = 0;
-var question = document.getElementById("question");
+var questionEl = document.getElementById("question");
 var score = 0;
 
 // function that will start the quiz and timer countdown
 function countDown() {
-    
+
     // set the initial time
     var timeLeft = 5;
 
     // start the countdown using setInterval method and setting the conditions
 
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
         if (timeLeft > 1) {
             timerEl.textContent = 'Time Left: ' + timeLeft;
             timeLeft--;
@@ -73,22 +63,26 @@ function countDown() {
             clearInterval(timer);
             // show score
         }
-       
+
 
     }, 1000);
 }
 
 // Present the quiz questions
-function askQuestion () {
+function askQuestion() {
+    if (currentQuestion === finalQuestion) {
+        showScore();
+    }
     var q = questions[currentQuestion];
 
-    question.innerHTML = "<p>" + q.question + "</p>";
+    questionEl.innerHTML = "<p>" + q.question + "</p>";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
+    console.log(q);
 }
 
-function showQuestion () {
+function showQuestion() {
     // remove the initial display
     quizSection.style.display = "none";
     askQuestion();
@@ -98,19 +92,19 @@ function showQuestion () {
 }
 
 // create a loop to go through the array
-function loopQuestions () {
+function loopQuestions() {
     currentQuestion++;
 
     if (currentQuestion < finalQuestion) {
         endQuiz();
         return;
     } else {
-        quiz.innerHTML += "<div class='loop' id=" + currentQuestion +"></div>";
+        quiz.innerHTML += "<div class='loop' id=" + currentQuestion + "></div>";
     }
 }
 
 // display a message with the score when the game is over
-function endQuiz () {
+function endQuiz() {
     clearInterval(timer);
 
     var results = `
@@ -121,5 +115,17 @@ function endQuiz () {
 
     document.getElementById("quizSection").innerHTML = results;
 }
+
+// store the scores to localStorage
+function storeScore() {
+    localStorage.setItem("highscore", score);
+    pullScore();
+}
+
+// view scores stored on localStorage
+//function pullScore() {
+//var 
+
+//}
 // add an event listener for when the start button is clicked
-BtnEl.addEventListener("click",showQuestion);
+BtnEl.addEventListener("click", showQuestion);
