@@ -10,18 +10,26 @@
 <body>
     <header>
         <nav>
-            <h2 class="highscore"><a href="">View Highscore</a></h2>
+            <h2 class="highscore"><a onclick="showScore()">View Highscore</a></h2>
             <h2 id="timer">Time:</h2>
         </nav>
     </header>
     <main>
-        <section class="quiz">
+        <section id="quizSection">
             <h2>Coding Quiz</h2>
-            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will reduce your time by ten seconds!</p>
             <button onclick="countDown()" id="startBtn">Start Quiz!</button>
         </section>
+        <div id="quiz">
+            <div id="question"></div>
+            <div id="choices">
+                <div class="choice" id="A"></div>
+                <div class="choice" id="B"></div>
+                <div class="choice" id="C"></div>
+            </div>
+        </div>
+        <div id="scores"></div>
     </main>
-    
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
