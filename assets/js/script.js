@@ -20,8 +20,8 @@ var questions = [
     },
     {
         q: "Which of the following is not an HTML semantic element? ",
-        choices: ["<article>","<form>","<span>",]
-        a: "span"
+        choices: ["<article>","<form>","<span>",],
+        a: "<span>"
 
     },
     {
@@ -30,24 +30,21 @@ var questions = [
         a: "ul"
 
     },
-]
+];
 
 // list the variables
 var timerEl = document.getElementById('timer');
 var BtnEl = document.getElementById("startBtn");
-var choiceA = document.getElementById("A");
-var choiceB = document.getElementById("B");
-var choiceC = document.getElementById("C");
 var finalQuestion = questions.length - 1;
 var currentQuestion = 0;
 var questionEl = document.getElementById("question");
 var score = 0;
 
-// function that will start the quiz and timer countdown
+// create the timer countdown
 function countDown() {
 
     // set the initial time
-    var timeLeft = 5;
+    var timeLeft = 80;
 
     // start the countdown using setInterval method and setting the conditions
 
@@ -66,21 +63,22 @@ function countDown() {
 
 
     }, 1000);
-}
+};
 
 // Present the quiz questions
 function askQuestion() {
-    if (currentQuestion === finalQuestion) {
-        showScore();
-    }
-    var q = questions[currentQuestion];
+    currentQuestion++;
 
-    questionEl.innerHTML = "<p>" + q.question + "</p>";
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    console.log(q);
-}
+    if (currentQuestion > finalQuestion) {
+        endQuiz();
+        return;
+    }
+
+   for (var qLoop = 0; qLoop <questions[currentQuestion].choices.length; qLoop++) {
+       if ()
+   }
+
+};
 
 function showQuestion() {
     // remove the initial display
@@ -89,7 +87,7 @@ function showQuestion() {
     quiz.style.display = "block";
     loopQuestions();
     countDown();
-}
+};
 
 // create a loop to go through the array
 function loopQuestions() {
@@ -98,34 +96,22 @@ function loopQuestions() {
     if (currentQuestion < finalQuestion) {
         endQuiz();
         return;
-    } else {
-        quiz.innerHTML += "<div class='loop' id=" + currentQuestion + "></div>";
-    }
-}
+    } 
+};
 
 // display a message with the score when the game is over
 function endQuiz() {
     clearInterval(timer);
-
-    var results = `
-    <h2>Quiz Over!</h2>
-    <h2>Your final score is ` + score + ` /100!</h2>
-    <input type-"text" id="name" placeholder="Enter your name">
-    <button onclick="saveScore()">Save Score</button>`;
-
-    document.getElementById("quizSection").innerHTML = results;
-}
+};
 
 // store the scores to localStorage
 function storeScore() {
     localStorage.setItem("highscore", score);
     pullScore();
-}
+};
 
 // view scores stored on localStorage
 //function pullScore() {
-//var 
 
-//}
 // add an event listener for when the start button is clicked
 BtnEl.addEventListener("click", showQuestion);
